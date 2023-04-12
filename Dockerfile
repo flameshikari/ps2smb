@@ -1,13 +1,4 @@
 FROM alpine:3.13.5
-
-LABEL maintainer="FoRTu" \
-maintainet.email="me@fortu.io" \
-maintainer.website="https://github.com/FoRTu"
-
-RUN apk add --no-cache samba-server=4.13.8-r0 samba-common-tools=4.13.8-r0 openssl
-
-ADD start.sh /start.sh
-
-RUN ["chmod", "+x", "/start.sh"]
-
-CMD ["/start.sh"]
+RUN apk add --no-cache samba-server=4.13.8 samba-common-tools=4.13.8 openssl
+COPY smb.conf /etc/samba/smb.conf
+CMD smbd --foreground --no-process-group --debug-stdout
