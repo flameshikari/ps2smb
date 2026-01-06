@@ -1,0 +1,10 @@
+services:
+  ps2smb:
+    image: flameshikari/ps2smb
+    container_name: ps2smb
+    build: .
+    volumes:
+      - ${OPL_DIR:-./opl}:/mnt/opl
+    ports:
+      - ${PORT:-445}:1445
+      - 8080:8080
